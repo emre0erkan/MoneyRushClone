@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CoinMovement : MonoBehaviour
 {
-    public static int rotateCoin = 2;
+    //public static int rotateCoin = 2;
     [SerializeField] float swerveSpeed;
     [SerializeField] float maxSwerveAmount;
 
@@ -17,7 +17,7 @@ public class CoinMovement : MonoBehaviour
 
     void Update()
     {
-        transform.Rotate(Vector3.left * rotateCoin);
+        //transform.Rotate(Vector3.left * rotateCoin);
         transform.position = transform.position + new Vector3(0, 0, 0.1f);
         Vector3 sideMove = -transform.right * swerveSpeed * swerveInput.MoveFactorX * Time.deltaTime;
         transform.position = transform.position + sideMove;
