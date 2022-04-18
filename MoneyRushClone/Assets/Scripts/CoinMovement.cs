@@ -19,7 +19,7 @@ public class CoinMovement : MonoBehaviour
     {
         //transform.Rotate(Vector3.left * rotateCoin);
         transform.position = transform.position + new Vector3(0, 0, 0.1f);
-        Vector3 sideMove = -transform.right * swerveSpeed * swerveInput.MoveFactorX * Time.deltaTime;
+        Vector3 sideMove = transform.right * swerveSpeed * swerveInput.MoveFactorX * Time.deltaTime;
         transform.position = transform.position + sideMove;
 
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, -3.75f, 3.75f), transform.position.y, transform.position.z);

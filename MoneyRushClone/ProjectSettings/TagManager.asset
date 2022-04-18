@@ -6,6 +6,7 @@ TagManager:
   tags:
   - BlueGate
   - RedGate
+  - MainCoin
   layers:
   - Default
   - TransparentFX
