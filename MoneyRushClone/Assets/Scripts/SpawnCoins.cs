@@ -6,7 +6,8 @@ public class SpawnCoins : MonoBehaviour
 {
     //float cashAmount = 0.5f;
     float newCoinDistance = 0.02f;
-    
+    private float moneyAmount;
+    private float tempMoney;
 
     
     [SerializeField] GameObject newCoin;
@@ -29,6 +30,9 @@ public class SpawnCoins : MonoBehaviour
         if (other.gameObject.tag == "BlueGate")
         {
             SpawnCoin();
+            tempMoney = GameManager.Instance.GetMoney();
+            tempMoney++;
+            Debug.Log(tempMoney);    //her triggerda gamemanagerdeki moneyi arttýr. her seferinde 0.5i arttýrýyor düzelt
         }
     }
 
