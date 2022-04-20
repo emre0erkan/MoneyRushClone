@@ -16,12 +16,18 @@ public class SpawnCoins : MonoBehaviour
     {
         newCoin = Instantiate(newCoin);
         newCoin.transform.parent = transform;
-        newCoin.transform.localPosition = new Vector3(transform.position.x + newCoinDistance, 0, 0);
-        newCoinDistance++;
+        //newCoin.transform.localPosition = new Vector3(transform.position.x + newCoinDistance, 0, 0);
+        newCoin.transform.localPosition = new Vector3(Random.Range(-0.4f, -2f) + Random.Range(0.4f, 2f), 0, Random.Range(-0.5f, -2f) + Random.Range(0.5f, 2f));
+        //newCoinDistance++;
         newCoin.transform.rotation = Quaternion.Euler(0, 0, 90);
-        //Quaternion newCoinRotate = Quaternion.Euler(0, 0, 90);
-        //Vector3 nextSpawnPoint = new Vector3(transform.position.x + newCoinDistance, -4.22f, 0);
-        //newCoin = Instantiate(newCoin, nextSpawnPoint, newCoinRotate);
+        //if (this.GetComponent<CapsuleCollider>().bounds.Intersects(newCoin.GetComponent<CapsuleCollider>().bounds))
+        //{
+
+        //}
+        do
+        {          //tüm childlarýn birbiriyle deðip deðmediði kontrol edilmeli
+          newCoin.transform.localPosition = new Vector3(Random.Range(-0.4f, -2f) + Random.Range(0.4f, 2f), 0, Random.Range(-0.5f, -2f) + Random.Range(0.5f, 2f));
+        } while (this.GetComponentInChildren<CapsuleCollider>().bounds.Intersects(newCoin.GetComponent<CapsuleCollider>().bounds));
 
     }
 
@@ -29,6 +35,7 @@ public class SpawnCoins : MonoBehaviour
     {
         if (other.gameObject.tag == "BlueGate")
         {
+            other.gameObject.GetComponent<BoxCollider>().enabled = false;
             SpawnCoin();
             tempMoney = GameManager.Instance.GetMoney();
             tempMoney++;
