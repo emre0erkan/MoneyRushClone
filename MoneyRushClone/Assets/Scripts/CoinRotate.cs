@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CoinRotate : MonoBehaviour
 {
-    int rotateCoin = 2;
+    int rotateCoin = 6;
 
     // Update is called once per frame
     void Update()

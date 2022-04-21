@@ -494,7 +494,7 @@ GameObject:
   - component: {fileID: 8074314647630930089}
   m_Layer: 0
   m_Name: MainCoin
-  m_TagString: Untagged
+  m_TagString: MainCoin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -568,5 +568,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18d76ed72b0de0d4f96f9cb2c2ec7b5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCoin: {fileID: 9214562581384654842}
-  newCoin: {fileID: 681426370004026609, guid: 7205afc83c8a2164b8093681f7493f25, type: 3}
+  newCoin50: {fileID: 681426370004026609, guid: 7205afc83c8a2164b8093681f7493f25, type: 3}
+  newCoin25: {fileID: 5852153669433866216, guid: 2d688ad254b4054458931e49d30e1207, type: 3}
+  newCoin5: {fileID: 1459122951448500047, guid: 77e24ff32874aab4da8dc86e65a7f182, type: 3}

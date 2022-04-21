@@ -7,6 +7,14 @@ TagManager:
   - BlueGate
   - RedGate
   - MainCoin
+  - x2
+  - x4
+  - 5+
+  - 2_5+
+  - 2_5-
+  - 1-
+  - 2/
+  - +1.25
   layers:
   - Default
   - TransparentFX

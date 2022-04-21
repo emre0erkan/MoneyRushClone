@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager instance = null;
 
-    private float money;
+    public float money;
 
     public static GameManager Instance
     {

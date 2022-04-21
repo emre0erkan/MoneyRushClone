@@ -22,6 +22,6 @@ public class CoinMovement : MonoBehaviour
         Vector3 sideMove = transform.right * swerveSpeed * swerveInput.MoveFactorX * Time.deltaTime;
         transform.position = transform.position + sideMove;
 
-        transform.position = new Vector3(Mathf.Clamp(transform.position.x, -3.75f, 3.75f), transform.position.y, transform.position.z);
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x, -2.55f, 2.55f), transform.position.y, transform.position.z);
     }
 }
