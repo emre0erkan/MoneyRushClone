@@ -30,11 +30,57 @@ public class SpawnCoins : MonoBehaviour
                 SpawnCoin50();
             }
         }
-        if (other.gameObject.tag == "+1.25")
+        if (other.gameObject.tag == "x2")
         {
             other.gameObject.GetComponent<BoxCollider>().enabled = false;
             coinAmount = GameManager.Instance.money;
-            GameManager.Instance.money = GameManager.Instance.money + 3.65f;
+            GameManager.Instance.money = GameManager.Instance.money * 2;
+            coinAmountToSpawn = GameManager.Instance.money - coinAmount;
+            Debug.Log("Spawnlanacak: " + coinAmountToSpawn);
+
+
+            for (int j = 0; j < CoinCalculate50(coinAmount); j++)
+            {
+                SpawnCoin50();
+            }
+            for (int t = 0; t < CoinCalculate25(coinAmount); t++)
+            {
+                SpawnCoin25();
+            }
+            for (int k = 0; k < CoinCalculate5(coinAmount); k++)
+            {
+                SpawnCoin5();
+            }
+            Debug.Log("Total Money: " + GameManager.Instance.money);
+        }
+        if (other.gameObject.tag == "x4")
+        {
+            other.gameObject.GetComponent<BoxCollider>().enabled = false;
+            coinAmount = GameManager.Instance.money;
+            GameManager.Instance.money = GameManager.Instance.money * 4;
+            coinAmountToSpawn = GameManager.Instance.money - coinAmount;
+            Debug.Log("Spawnlanacak: " + coinAmountToSpawn);
+
+
+            for (int j = 0; j < CoinCalculate50(coinAmount); j++)
+            {
+                SpawnCoin50();
+            }
+            for (int t = 0; t < CoinCalculate25(coinAmount); t++)
+            {
+                SpawnCoin25();
+            }
+            for (int k = 0; k < CoinCalculate5(coinAmount); k++)
+            {
+                SpawnCoin5();
+            }
+            Debug.Log("Total Money: " + GameManager.Instance.money);
+        }
+        if (other.gameObject.tag == "+2.4")
+        {
+            other.gameObject.GetComponent<BoxCollider>().enabled = false;
+            coinAmount = GameManager.Instance.money;
+            GameManager.Instance.money = GameManager.Instance.money + 2.4f;
             coinAmountToSpawn = GameManager.Instance.money - coinAmount;
             Debug.Log("Spawnlanacak: " + coinAmountToSpawn);
 
@@ -73,6 +119,8 @@ public class SpawnCoins : MonoBehaviour
         double temp3 = decimalPart / 25;
         coin25ToSpawn = temp3;
         Debug.Log("25 Cent:" + coin25ToSpawn);
+        if (decimalPart == 50)
+            coin25ToSpawn = 0;
         return (int)coin25ToSpawn;
     }
 
