@@ -11,7 +11,7 @@ public class SpawnCoins : MonoBehaviour
     private double coin5ToSpawn;
     private double coin25ToSpawn;
 
-    
+
     [SerializeField] GameObject newCoin50;
     [SerializeField] GameObject newCoin25;
     [SerializeField] GameObject newCoin5;
@@ -19,7 +19,7 @@ public class SpawnCoins : MonoBehaviour
 
     private void SpawnCoin()
     {
-        
+
     }
 
     private void OnTriggerExit(Collider other)
@@ -34,30 +34,52 @@ public class SpawnCoins : MonoBehaviour
                 SpawnCoin50();
             }
         }
-        if(other.gameObject.tag == "+1.25")
+        if (other.gameObject.tag == "+1.25")
         {
             other.gameObject.GetComponent<BoxCollider>().enabled = false;
             coinAmount = GameManager.Instance.money;
-            GameManager.Instance.money = GameManager.Instance.money + 1.25f;
+            GameManager.Instance.money = GameManager.Instance.money + 3.80f;
             coinAmountToSpawn = GameManager.Instance.money - coinAmount;
             Debug.Log("Spawnlanacak: " + coinAmountToSpawn);
+
             coin50ToSpawn = (coinAmountToSpawn / 0.5f) - (coinAmountToSpawn % 0.5f);
             int coin50ToSpawn2 = (int)coin50ToSpawn;
             Debug.Log("50 Cent: " + coin50ToSpawn2);
 
             double temp = (int)coinAmountToSpawn;
-            coin5ToSpawn = ((coinAmountToSpawn - temp) * 100) / 5;
+            double decimalPart = (coinAmountToSpawn - temp) * 100;
+            Debug.Log("bu ne dec: " + decimalPart);
+            double temp2 = decimalPart % 25;
+
+            double temp3 = decimalPart / 25;
+            Debug.Log("bu ne: " + temp3);
+
+            coin5ToSpawn = temp2 / 5;
+            //double decimalPart2 = (coinAmountToSpawn - temp) * 100;
+            //coin5ToSpawn = decimalPart2 / 5;
+            coin5ToSpawn = (int)coin5ToSpawn;
             Debug.Log("5 Cent:" + coin5ToSpawn);
+            coin25ToSpawn = temp3;
+            coin25ToSpawn = (int)coin25ToSpawn;
+            Debug.Log("25 Cent:" + coin25ToSpawn);
+
+
+
 
             Debug.Log("Total Money: " + GameManager.Instance.money);
             for (int j = 0; j < coin50ToSpawn2; j++)
             {
                 SpawnCoin50();
             }
+            for (int t = 0; t < coin25ToSpawn; t++)
+            {
+                SpawnCoin25();
+            }
             for (int k = 0; k < coin5ToSpawn; k++)
             {
                 SpawnCoin5();
             }
+
         }
     }
 
@@ -89,7 +111,7 @@ public class SpawnCoins : MonoBehaviour
         //    newCoin.transform.localPosition = new Vector3(Random.Range(-1.2f, 1.2f), 0, Random.Range(-1.5f, 1.5f));
         //} while (this.GetComponentInChildren<CapsuleCollider>().bounds.Intersects(newCoin.GetComponent<CapsuleCollider>().bounds));
 
-        newCoin25.transform.localPosition = new Vector3(Random.Range(-1.2f, 1.2f), transform.localPosition.y-0.27f, Random.Range(-1.5f, 1.5f));
+        newCoin25.transform.localPosition = new Vector3(Random.Range(-1.2f, 1.2f), 0, Random.Range(-1.5f, 1.5f));
 
         //newCoinDistance++;
         newCoin25.transform.rotation = Quaternion.Euler(0, 0, 90);
