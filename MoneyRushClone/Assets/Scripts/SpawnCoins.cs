@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class SpawnCoins : MonoBehaviour
 {
-    private double coinAmount;
-    private double coinAmountToSpawn;
-    private double deleteAmount;
-    private double restMoney;
+    private float coinAmount;
+    private float coinAmountToSpawn;
+    private float deleteAmount;
+    private float restMoney;
     private bool isDecreasing;
 
-    [SerializeField] GameObject newCoin50;
-    [SerializeField] GameObject newCoin25;
-    [SerializeField] GameObject newCoin5;
+    [SerializeField] GameObject newCoin50Prefab;
+    [SerializeField] GameObject newCoin25Prefab;
+    [SerializeField] GameObject newCoin5Prefab;
+
 
     private List<GameObject> coin50List = new List<GameObject>();
     private List<GameObject> coin25List = new List<GameObject>();
@@ -20,73 +21,73 @@ public class SpawnCoins : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "x2")
-        {
-            isDecreasing = false;
-            other.gameObject.GetComponent<BoxCollider>().enabled = false;
-            coinAmount = GameManager.Instance.money;
-            GameManager.Instance.money = GameManager.Instance.money * 2;  //better system for multiplying gates
-            coinAmountToSpawn = GameManager.Instance.money - coinAmount;
-            Debug.Log("Spawnlanacak: " + coinAmountToSpawn);
+        //if (other.gameObject.tag == "x2")
+        //{
+        //    isDecreasing = false;
+        //    other.gameObject.GetComponent<BoxCollider>().enabled = false;
+        //    coinAmount = GameManager.Instance.money;
+        //    GameManager.Instance.money = GameManager.Instance.money * 2;  //better system for multiplying gates
+        //    coinAmountToSpawn = GameManager.Instance.money - coinAmount;
+        //    Debug.Log("Spawnlanacak: " + coinAmountToSpawn);
 
-            SpawnCoin();
+        //    SpawnCoin();
 
-            Debug.Log("Total Money: " + GameManager.Instance.money);
-        }
-        if (other.gameObject.tag == "x4")
-        {
-            isDecreasing = false;
-            other.gameObject.GetComponent<BoxCollider>().enabled = false;
-            coinAmount = GameManager.Instance.money;
-            GameManager.Instance.money = GameManager.Instance.money * 4;
-            coinAmountToSpawn = GameManager.Instance.money - coinAmount;
-            Debug.Log("Spawnlanacak: " + coinAmountToSpawn);
+        //    Debug.Log("Total Money: " + GameManager.Instance.money);
+        //}
+        //if (other.gameObject.tag == "x4")
+        //{
+        //    isDecreasing = false;
+        //    other.gameObject.GetComponent<BoxCollider>().enabled = false;
+        //    coinAmount = GameManager.Instance.money;
+        //    GameManager.Instance.money = GameManager.Instance.money * 4;
+        //    coinAmountToSpawn = GameManager.Instance.money - coinAmount;
+        //    Debug.Log("Spawnlanacak: " + coinAmountToSpawn);
 
-            SpawnCoin();
+        //    SpawnCoin();
 
-            Debug.Log("Total Money: " + GameManager.Instance.money);
-        }
-        if (other.gameObject.tag == "+2.4")
-        {
-            isDecreasing = false;
-            other.gameObject.GetComponent<BoxCollider>().enabled = false;  //system for multiplying gates is not neccessary here
-            GameManager.Instance.money = GameManager.Instance.money + 2.4f;
-            coinAmountToSpawn = 2.4f;
-            Debug.Log("Spawnlanacak: " + coinAmountToSpawn);
+        //    Debug.Log("Total Money: " + GameManager.Instance.money);
+        //}
+        //if (other.gameObject.tag == "+2.4")
+        //{
+        //    isDecreasing = false;
+        //    other.gameObject.GetComponent<BoxCollider>().enabled = false;  //system for multiplying gates is not neccessary here
+        //    GameManager.Instance.money = GameManager.Instance.money + 2.4f;
+        //    coinAmountToSpawn = 2.4f;
+        //    Debug.Log("Spawnlanacak: " + coinAmountToSpawn);
 
-            SpawnCoin();
+        //    SpawnCoin();
 
-            Debug.Log("Total Money: " + GameManager.Instance.money);
-        }
-        /////////////////////////////////////////////////////////////////////////////
-        if (other.gameObject.tag == "-1")
-        {
-            isDecreasing = true;
-            deleteAmount = 1 + 0.5f;
-            other.gameObject.GetComponent<BoxCollider>().enabled = false;
-            coinAmount = GameManager.Instance.money;
-            restMoney = GameManager.Instance.money - deleteAmount;
-            GameManager.Instance.money = GameManager.Instance.money - 1;
+        //    Debug.Log("Total Money: " + GameManager.Instance.money);
+        //}
+        ///////////////////////////////////////////////////////////////////////////////
+        //if (other.gameObject.tag == "-1")
+        //{
+        //    isDecreasing = true;
+        //    deleteAmount = 2.4f + 0.5f;
+        //    other.gameObject.GetComponent<BoxCollider>().enabled = false;
+        //    coinAmount = GameManager.Instance.money;
+        //    restMoney = GameManager.Instance.money - deleteAmount;
+        //    GameManager.Instance.money = GameManager.Instance.money - 1;
 
-            DestroyCoins();
-            SpawnCoin();
+        //    DestroyCoins();
+        //    SpawnCoin();
 
-            Debug.Log("Total Money: " + GameManager.Instance.money);
-        }
-        if (other.gameObject.tag == "divide2")
-        {
-            isDecreasing = true;
-            other.gameObject.GetComponent<BoxCollider>().enabled = false;
-            deleteAmount = (GameManager.Instance.money / 2) + 0.5f;
-            restMoney = GameManager.Instance.money - deleteAmount;
-            GameManager.Instance.money = GameManager.Instance.money / 2;
-            Debug.Log("Silinecek para: " + deleteAmount);
+        //    Debug.Log("Total Money: " + GameManager.Instance.money);
+        //}
+        //if (other.gameObject.tag == "divide2")
+        //{
+        //    isDecreasing = true;
+        //    other.gameObject.GetComponent<BoxCollider>().enabled = false;
+        //    deleteAmount = (GameManager.Instance.money / 2) + 0.5f;
+        //    restMoney = GameManager.Instance.money - deleteAmount;
+        //    GameManager.Instance.money = GameManager.Instance.money / 2;
+        //    Debug.Log("Silinecek para: " + deleteAmount);
 
-            DestroyCoins();
-            SpawnCoin();
+        //    DestroyCoins();
+        //    SpawnCoin();
 
-            Debug.Log("Total Money: " + GameManager.Instance.money);
-        }
+        //    Debug.Log("Total Money: " + GameManager.Instance.money);
+        //}
     }
 
     private void SpawnCoin()
@@ -127,11 +128,11 @@ public class SpawnCoins : MonoBehaviour
         }
     }
 
-    private int CoinSpawnCalculate50(double coinAmountToSpawn)
+    private int CoinSpawnCalculate50(float coinAmountToSpawn)
     {
-        double coin50ToSpawn;
-        double temp = (int)coinAmountToSpawn;
-        double decimalPart = (coinAmountToSpawn - temp) * 100;
+        float coin50ToSpawn;
+        int temp = (int)coinAmountToSpawn;
+        float decimalPart = (coinAmountToSpawn - temp) * 100;
         coin50ToSpawn = (coinAmountToSpawn / 0.5f) - (coinAmountToSpawn % 0.5f);
         Debug.Log("50 Cent: " + coin50ToSpawn);
         if (decimalPart > 50)
@@ -139,12 +140,12 @@ public class SpawnCoins : MonoBehaviour
         return (int)coin50ToSpawn;
     }
 
-    private int CoinSpawnCalculate25(double coinAmountToSpawn)
+    private int CoinSpawnCalculate25(float coinAmountToSpawn)
     {
-        double coin25ToSpawn;
-        double temp = (int)coinAmountToSpawn;
-        double decimalPart = (coinAmountToSpawn - temp) * 100;
-        double temp3 = decimalPart / 25;
+        float coin25ToSpawn;
+        int temp = (int)coinAmountToSpawn;
+        float decimalPart = (coinAmountToSpawn - temp) * 100;
+        float temp3 = decimalPart / 25;
         coin25ToSpawn = temp3;
         Debug.Log("25 Cent:" + coin25ToSpawn);
         if (decimalPart == 50)
@@ -152,21 +153,20 @@ public class SpawnCoins : MonoBehaviour
         return (int)coin25ToSpawn;
     }
 
-    private int CoinSpawnCalculate5(double coinAmountToSpawn)
+    private int CoinSpawnCalculate5(float coinAmountToSpawn)
     {
-        double coin5ToSpawn;
-        double temp = (int)coinAmountToSpawn;
-        double decimalPart = (coinAmountToSpawn - temp) * 100;
-        double temp2 = decimalPart % 25;
-        coin5ToSpawn = temp2 / 5;
+        float coin5ToSpawn;
+        int intPart = (int)coinAmountToSpawn;
+        float decimalPart = (coinAmountToSpawn - intPart) * 100;
+        coin5ToSpawn = (decimalPart % 25) / 5;
         Debug.Log("5 Cent:" + coin5ToSpawn);
         return (int)coin5ToSpawn;
     }
 
-    private int CoinDeleteCalculate50(double coin50ToDelete)
+    private int CoinDeleteCalculate50(float coin50ToDelete)
     {
-        double temp = (int)coin50ToDelete;
-        double decimalPart = (deleteAmount - temp) * 100;
+        int intPart = (int)coin50ToDelete;
+        float decimalPart = (deleteAmount - intPart) * 100;
         coin50ToDelete = (deleteAmount / 0.5f) - (deleteAmount % 0.5f);  //2-
         Debug.Log("Silinen 50 Cent: " + coin50ToDelete);
         if (decimalPart > 50)
@@ -174,11 +174,12 @@ public class SpawnCoins : MonoBehaviour
         return (int)coin50ToDelete;
     }
 
-    private int CoinDeleteCalculate25(double coin25ToDelete)
+    private int CoinDeleteCalculate25(float coin25ToDelete)
     {
-        double temp = (int)coin25ToDelete;
-        double decimalPart = (coin25ToDelete - temp) * 100;
-        double temp3 = decimalPart / 25;
+        int intPart = (int)coin25ToDelete;
+        //int temp = Mathf.FloorToInt(coin25ToDelete);
+        float decimalPart = (coin25ToDelete - intPart) * 100;
+        float temp3 = decimalPart / 25;
         coin25ToDelete = temp3;
         Debug.Log("Silinen 25 Cent:" + coin25ToDelete);
         if (decimalPart == 50)
@@ -186,11 +187,11 @@ public class SpawnCoins : MonoBehaviour
         return (int)coin25ToDelete;
     }
 
-    private int CoinDeleteCalculate5(double coin5ToDelete)
+    private int CoinDeleteCalculate5(float coin5ToDelete)
     {
-        double temp = (int)coin5ToDelete;
-        double decimalPart = (coin5ToDelete - temp) * 100;
-        double temp2 = decimalPart % 25;
+        int temp = (int)coin5ToDelete;
+        float decimalPart = (coin5ToDelete - temp) * 100;
+        float temp2 = decimalPart % 25;
         coin5ToDelete = temp2 / 5;
         Debug.Log("Silinen 5 Cent:" + coin5ToDelete);
         return (int)coin5ToDelete;
@@ -198,16 +199,16 @@ public class SpawnCoins : MonoBehaviour
 
     private void SpawnCoin50()
     {
-        newCoin50 = Instantiate(newCoin50);
+        GameObject newCoin50 = Instantiate(newCoin50Prefab);
         coin50List.Add(newCoin50);
-        newCoin50.transform.parent = transform;
+        newCoin50.transform.parent = gameObject.transform;
         newCoin50.transform.localPosition = new Vector3(Random.Range(-1.2f, 1.2f), 0, Random.Range(-1.5f, 1.5f));
         newCoin50.transform.rotation = Quaternion.Euler(0, 0, 90);
     }
 
     private void SpawnCoin25()
     {
-        newCoin25 = Instantiate(newCoin25);
+        GameObject newCoin25 = Instantiate(newCoin25Prefab);
         coin25List.Add(newCoin25);
         newCoin25.transform.parent = transform;
         newCoin25.transform.localPosition = new Vector3(Random.Range(-1.2f, 1.2f), 0, Random.Range(-1.5f, 1.5f));
@@ -216,12 +217,13 @@ public class SpawnCoins : MonoBehaviour
 
     private void SpawnCoin5()
     {
-        newCoin5 = Instantiate(newCoin5);
+        GameObject newCoin5 = Instantiate(newCoin5Prefab);
         coin5List.Add(newCoin5);
         newCoin5.transform.parent = transform;
         newCoin5.transform.localPosition = new Vector3(Random.Range(-1.2f, 1.2f), 0, Random.Range(-1.5f, 1.5f));
         newCoin5.transform.rotation = Quaternion.Euler(0, 0, 90);
     }
+
 
 
 }

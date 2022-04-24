@@ -105,6 +105,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2218173514352395713}
   - component: {fileID: 2255653472755400905}
+  - component: {fileID: 6272889930969844315}
   m_Layer: 0
   m_Name: BlueGate
   m_TagString: BlueGate
@@ -145,6 +146,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &6272889930969844315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2218173514352395712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96a5e1fde57e3164cb5f22e906e57d5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  operationType: 1
+  value: 2
 --- !u!1 &2218173515154439389
 GameObject:
   m_ObjectHideFlags: 0
