@@ -6,10 +6,6 @@ public class Gates : MonoBehaviour
 {
     [SerializeField] Operation operationType;
     [SerializeField] float value;
-    void Start()
-    {
-
-    }
 
     public float Calculate(float moneyAmount)
     {
