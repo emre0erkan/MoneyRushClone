@@ -148,7 +148,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2218173514352395713, guid: 2b54323c6b07bad44acf1348181cca06, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -29.5
+      value: -29.04
       objectReference: {fileID: 0}
     - target: {fileID: 2218173514352395713, guid: 2b54323c6b07bad44acf1348181cca06, type: 3}
       propertyPath: m_LocalRotation.w
@@ -180,7 +180,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6272889930969844315, guid: 2b54323c6b07bad44acf1348181cca06, type: 3}
       propertyPath: value
-      value: 2.6
+      value: 2.45
       objectReference: {fileID: 0}
     - target: {fileID: 6272889930969844315, guid: 2b54323c6b07bad44acf1348181cca06, type: 3}
       propertyPath: operationType
@@ -574,7 +574,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2218173514352395713, guid: 2b54323c6b07bad44acf1348181cca06, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.58
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2218173514352395713, guid: 2b54323c6b07bad44acf1348181cca06, type: 3}
       propertyPath: m_LocalRotation.w
@@ -687,18 +687,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8074314647630930089, guid: b86f8abf85621b344ae420ed6c6355bb, type: 3}
-      propertyPath: newCoin5Prefab
-      value: 
-      objectReference: {fileID: 1459122951448500047, guid: 77e24ff32874aab4da8dc86e65a7f182, type: 3}
-    - target: {fileID: 8074314647630930089, guid: b86f8abf85621b344ae420ed6c6355bb, type: 3}
-      propertyPath: newCoin25Prefab
-      value: 
-      objectReference: {fileID: 5852153669433866216, guid: 2d688ad254b4054458931e49d30e1207, type: 3}
-    - target: {fileID: 8074314647630930089, guid: b86f8abf85621b344ae420ed6c6355bb, type: 3}
-      propertyPath: newCoin50Prefab
-      value: 
-      objectReference: {fileID: 681426370004026609, guid: 7205afc83c8a2164b8093681f7493f25, type: 3}
+    - target: {fileID: 7659184063059552874, guid: b86f8abf85621b344ae420ed6c6355bb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7659184063059552874, guid: b86f8abf85621b344ae420ed6c6355bb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8093406788057367308, guid: b86f8abf85621b344ae420ed6c6355bb, type: 3}
       propertyPath: m_Enabled
       value: 1

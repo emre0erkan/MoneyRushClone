@@ -6,6 +6,7 @@ public class SpawnCoins : MonoBehaviour
 {
     private float coinAmountToSpawn;
     private float deleteAmount;
+    //private bool noCollider;
 
     [SerializeField] GameObject newCoin50Prefab;
     [SerializeField] GameObject newCoin25Prefab;
@@ -16,15 +17,25 @@ public class SpawnCoins : MonoBehaviour
     private List<GameObject> coin25List = new List<GameObject>();
     private List<GameObject> coin5List = new List<GameObject>();
 
-    private void OnTriggerEnter(Collider other)
+    private void Start()
     {
-        
+        GameObject newCoin50 = Instantiate(newCoin50Prefab);
+        coin50List.Add(newCoin50);
+        //newCoin50.GetComponent<CapsuleCollider>().enabled = true;
+        newCoin50.transform.parent = gameObject.transform;
+        newCoin50.transform.localPosition = new Vector3(0, 0, 0);
+        newCoin50.transform.rotation = Quaternion.Euler(0, 0, 90);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
         if (other.gameObject.tag == "Gate")
         {
+            Debug.Log("Triggered");
             float desiredMoney = other.gameObject.GetComponent<Gates>().Calculate(GameManager.Instance.money);
             coinAmountToSpawn = desiredMoney;
             GameManager.Instance.money = coinAmountToSpawn;
-            
+
             DestroyCoins();
             SpawnCoin();
             Debug.Log("Total Money: " + GameManager.Instance.money);
@@ -73,9 +84,9 @@ public class SpawnCoins : MonoBehaviour
         int temp = (int)coinAmountToSpawn;
         float decimalPart = (coinAmountToSpawn - temp) * 100;
         coin50ToSpawn = (coinAmountToSpawn / 0.5f) - (coinAmountToSpawn % 0.5f);
-        Debug.Log("50 Cent: " + coin50ToSpawn);
-        if (decimalPart > 50)
+        if (decimalPart >= 50)
             coin50ToSpawn = coin50ToSpawn - 1;
+        Debug.Log("50 Cent: " + (int)coin50ToSpawn);
         return (int)coin50ToSpawn;
     }
 
@@ -86,9 +97,7 @@ public class SpawnCoins : MonoBehaviour
         float decimalPart = (coinAmountToSpawn - temp) * 100;
         float temp3 = decimalPart / 25;
         coin25ToSpawn = temp3;
-        Debug.Log("25 Cent:" + coin25ToSpawn);
-        if (decimalPart == 50)
-            coin25ToSpawn = 0;
+        Debug.Log("25 Cent:" + (int)coin25ToSpawn);
         return (int)coin25ToSpawn;
     }
 
@@ -97,44 +106,44 @@ public class SpawnCoins : MonoBehaviour
         float coin5ToSpawn;
         int intPart = (int)coinAmountToSpawn;
         float decimalPart = (coinAmountToSpawn - intPart) * 100;
-        coin5ToSpawn = (decimalPart % 25) / 5;
+        coin5ToSpawn = Mathf.Round((decimalPart % 25) / 5);
         Debug.Log("5 Cent:" + coin5ToSpawn);
         return (int)coin5ToSpawn;
     }
 
-    private int CoinDeleteCalculate50(float coin50ToDelete)
-    {
-        int intPart = (int)coin50ToDelete;
-        float decimalPart = (deleteAmount - intPart) * 100;
-        coin50ToDelete = (deleteAmount / 0.5f) - (deleteAmount % 0.5f);  //2-
-        Debug.Log("Silinen 50 Cent: " + coin50ToDelete);
-        if (decimalPart > 50)
-            coin50ToDelete = coin50ToDelete - 1;
-        return (int)coin50ToDelete;
-    }
+    //private int CoinDeleteCalculate50(float coin50ToDelete)
+    //{
+    //    int intPart = (int)coin50ToDelete;
+    //    float decimalPart = (deleteAmount - intPart) * 100;
+    //    coin50ToDelete = (deleteAmount / 0.5f) - (deleteAmount % 0.5f);  //2-
+    //    Debug.Log("Silinen 50 Cent: " + coin50ToDelete);
+    //    if (decimalPart > 50)
+    //        coin50ToDelete = coin50ToDelete - 1;
+    //    return (int)coin50ToDelete;
+    //}
 
-    private int CoinDeleteCalculate25(float coin25ToDelete)
-    {
-        int intPart = (int)coin25ToDelete;
-        //int temp = Mathf.FloorToInt(coin25ToDelete);
-        float decimalPart = (coin25ToDelete - intPart) * 100;
-        float temp3 = decimalPart / 25;
-        coin25ToDelete = temp3;
-        Debug.Log("Silinen 25 Cent:" + coin25ToDelete);
-        if (decimalPart == 50)
-            coin25ToDelete = 0;
-        return (int)coin25ToDelete;
-    }
+    //private int CoinDeleteCalculate25(float coin25ToDelete)
+    //{
+    //    int intPart = (int)coin25ToDelete;
+    //    //int temp = Mathf.FloorToInt(coin25ToDelete);
+    //    float decimalPart = (coin25ToDelete - intPart) * 100;                    // we delete everything, these are not needed//
+    //    float temp3 = decimalPart / 25;                                          // when we want to delete needed amount of coins
+    //    coin25ToDelete = temp3;                                                  // we need to delete more coins than we already have
+    //    Debug.Log("Silinen 25 Cent:" + coin25ToDelete);
+    //    if (decimalPart == 50)
+    //        coin25ToDelete = 0;
+    //    return (int)coin25ToDelete;
+    //}
 
-    private int CoinDeleteCalculate5(float coin5ToDelete)
-    {
-        int temp = (int)coin5ToDelete;
-        float decimalPart = (coin5ToDelete - temp) * 100;
-        float temp2 = decimalPart % 25;
-        coin5ToDelete = temp2 / 5;
-        Debug.Log("Silinen 5 Cent:" + coin5ToDelete);
-        return (int)coin5ToDelete;
-    }
+    //private int CoinDeleteCalculate5(float coin5ToDelete)
+    //{
+    //    int temp = (int)coin5ToDelete;
+    //    float decimalPart = (coin5ToDelete - temp) * 100;
+    //    float temp2 = decimalPart % 25;
+    //    coin5ToDelete = temp2 / 5;
+    //    Debug.Log("Silinen 5 Cent:" + coin5ToDelete);
+    //    return (int)coin5ToDelete;
+    //}
 
     private void SpawnCoin50()
     {

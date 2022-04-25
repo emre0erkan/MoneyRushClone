@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        money = 0;
+        money = 0.5f;
     }
     private void OnEnable()
     {
