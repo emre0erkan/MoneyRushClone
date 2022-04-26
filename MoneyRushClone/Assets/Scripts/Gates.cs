@@ -9,8 +9,11 @@ public class Gates : MonoBehaviour
     private float horizontalMoveSpeed = 0.04f;
     private bool movingGate;
 
+    GameObject coinText;
+
     private void Start()
     {
+        
         if (transform.position.x == 0)       //checking if the gate is supposed to move
             movingGate = true;
     }

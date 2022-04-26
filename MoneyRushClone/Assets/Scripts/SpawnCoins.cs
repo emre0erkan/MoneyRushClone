@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class SpawnCoins : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class SpawnCoins : MonoBehaviour
     [SerializeField] GameObject newCoin50Prefab;
     [SerializeField] GameObject newCoin25Prefab;
     [SerializeField] GameObject newCoin5Prefab;
-    private Text moneyText;     // devam
+    [SerializeField] TextMeshProUGUI moneyText;     // devam
 
     private List<GameObject> coin50List = new List<GameObject>();    //$ ¢
     private List<GameObject> coin25List = new List<GameObject>();
@@ -34,9 +35,10 @@ public class SpawnCoins : MonoBehaviour
             float desiredMoney = other.gameObject.GetComponent<Gates>().Calculate(GameManager.Instance.money);
             coinAmountToSpawn = desiredMoney;
             GameManager.Instance.money = coinAmountToSpawn;
-
+            moneyText.text = "$" + GameManager.Instance.money.ToString();
             DestroyCoins();
             SpawnCoin();
+            
             Debug.Log("Total Money: " + GameManager.Instance.money);
         }
 
