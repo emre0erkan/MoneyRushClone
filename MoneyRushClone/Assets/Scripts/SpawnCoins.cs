@@ -1,19 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SpawnCoins : MonoBehaviour
 {
     private float coinAmountToSpawn;
-    private float deleteAmount;
-    //private bool noCollider;
 
     [SerializeField] GameObject newCoin50Prefab;
     [SerializeField] GameObject newCoin25Prefab;
     [SerializeField] GameObject newCoin5Prefab;
+    private Text moneyText;     // devam
 
-
-    private List<GameObject> coin50List = new List<GameObject>();
+    private List<GameObject> coin50List = new List<GameObject>();    //$ ¢
     private List<GameObject> coin25List = new List<GameObject>();
     private List<GameObject> coin5List = new List<GameObject>();
 
