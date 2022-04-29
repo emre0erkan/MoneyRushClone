@@ -2,12 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class GameManager : MonoBehaviour
 {
     private static GameManager instance = null;
 
     public float money;
+    public bool isGameOver = false;
 
+    public GameObject coinMove;
+    public GameObject failMenuUI;
+
+
+    private void Update()
+    {
+        if (GameManager.Instance.money <= 0) 
+        { 
+            isGameOver = true;
+            GameOver();
+        }
+    }
     public static GameManager Instance
     {
         get
@@ -29,8 +43,10 @@ public class GameManager : MonoBehaviour
         instance = this;
     }
 
-    public float GetMoney()
+    public void GameOver()
     {
-        return money;
+        failMenuUI.SetActive(enabled);
+        Time.timeScale = 0f;
+        coinMove.GetComponent<CoinMovement>().forwardMove = new Vector3(0, 0, 0);
     }
 }

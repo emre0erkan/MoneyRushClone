@@ -5,10 +5,6 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     [SerializeField] Transform mainCoin;
-    void Start()
-    {
-        
-    }
 
     void Update()
     {
