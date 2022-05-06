@@ -144,6 +144,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   operationType: 1
   value: 2
+  movingGate: 0
+  _renderer: {fileID: 2218173515154439376}
 --- !u!65 &4293955548506523226
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -216,7 +218,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9886198bd2074374baf44eee1134a8ec, type: 2}
+  - {fileID: 2100000, guid: a549d696d840873408982b8c24079c1e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

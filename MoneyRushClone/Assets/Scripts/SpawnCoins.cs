@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using DG.Tweening;
 
 public class SpawnCoins : MonoBehaviour
 {
@@ -19,12 +20,15 @@ public class SpawnCoins : MonoBehaviour
 
     private void Start()
     {
+        PlayerPrefs.SetFloat("totalMoney", GameManager.Instance.money);
+
         GameObject newCoin50 = Instantiate(newCoin50Prefab);
         coin50List.Add(newCoin50);
         //newCoin50.GetComponent<CapsuleCollider>().enabled = true;
         newCoin50.transform.parent = gameObject.transform;
         newCoin50.transform.localPosition = new Vector3(0, 0, 0);
         newCoin50.transform.rotation = Quaternion.Euler(0, 0, 90);
+        newCoin50.transform.DOLocalRotate(new Vector3(360f, 0f, 90f), 1f, RotateMode.FastBeyond360).SetLoops(-1).SetEase(Ease.Linear);
     }
 
     private void OnTriggerExit(Collider other)
@@ -40,6 +44,10 @@ public class SpawnCoins : MonoBehaviour
             SpawnCoin();
             
             Debug.Log("Total Money: " + GameManager.Instance.money);
+        }
+        else if(other.gameObject.tag == "PlatformEnd")
+        {
+            PlayerPrefs.SetFloat("totalMoney", PlayerPrefs.GetFloat("totalMoney") + GameManager.Instance.money);
         }
 
     }
@@ -111,41 +119,6 @@ public class SpawnCoins : MonoBehaviour
         Debug.Log("5 Cent:" + coin5ToSpawn);
         return (int)coin5ToSpawn;
     }
-
-    //private int CoinDeleteCalculate50(float coin50ToDelete)
-    //{
-    //    int intPart = (int)coin50ToDelete;
-    //    float decimalPart = (deleteAmount - intPart) * 100;
-    //    coin50ToDelete = (deleteAmount / 0.5f) - (deleteAmount % 0.5f);  //2-
-    //    Debug.Log("Silinen 50 Cent: " + coin50ToDelete);
-    //    if (decimalPart > 50)
-    //        coin50ToDelete = coin50ToDelete - 1;
-    //    return (int)coin50ToDelete;
-    //}
-
-    //private int CoinDeleteCalculate25(float coin25ToDelete)
-    //{
-    //    int intPart = (int)coin25ToDelete;
-    //    //int temp = Mathf.FloorToInt(coin25ToDelete);
-    //    float decimalPart = (coin25ToDelete - intPart) * 100;                    // we delete everything, these are not needed//
-    //    float temp3 = decimalPart / 25;                                          // when we want to delete needed amount of coins
-    //    coin25ToDelete = temp3;                                                  // we need to delete more coins than we already have
-    //    Debug.Log("Silinen 25 Cent:" + coin25ToDelete);
-    //    if (decimalPart == 50)
-    //        coin25ToDelete = 0;
-    //    return (int)coin25ToDelete;
-    //}
-
-    //private int CoinDeleteCalculate5(float coin5ToDelete)
-    //{
-    //    int temp = (int)coin5ToDelete;
-    //    float decimalPart = (coin5ToDelete - temp) * 100;
-    //    float temp2 = decimalPart % 25;
-    //    coin5ToDelete = temp2 / 5;
-    //    Debug.Log("Silinen 5 Cent:" + coin5ToDelete);
-    //    return (int)coin5ToDelete;
-    //}
-
     private void SpawnCoin50()
     {
         GameObject newCoin50 = Instantiate(newCoin50Prefab);
@@ -153,6 +126,7 @@ public class SpawnCoins : MonoBehaviour
         newCoin50.transform.parent = gameObject.transform;
         newCoin50.transform.localPosition = new Vector3(Random.Range(-1.2f, 1.2f), 0, Random.Range(-1.5f, 1.5f));
         newCoin50.transform.rotation = Quaternion.Euler(0, 0, 90);
+        newCoin50.transform.DOLocalRotate(new Vector3(360f, 0f, 90f), 1f, RotateMode.FastBeyond360).SetLoops(-1).SetEase(Ease.Linear);
     }
 
     private void SpawnCoin25()
@@ -162,6 +136,8 @@ public class SpawnCoins : MonoBehaviour
         newCoin25.transform.parent = transform;
         newCoin25.transform.localPosition = new Vector3(Random.Range(-1.2f, 1.2f), 0, Random.Range(-1.5f, 1.5f));
         newCoin25.transform.rotation = Quaternion.Euler(0, 0, 90);
+        newCoin25.transform.DOLocalRotate(new Vector3(360f, 0f, 90f), 1f, RotateMode.FastBeyond360).SetLoops(-1).SetEase(Ease.Linear);
+
     }
 
     private void SpawnCoin5()
@@ -171,6 +147,7 @@ public class SpawnCoins : MonoBehaviour
         newCoin5.transform.parent = transform;
         newCoin5.transform.localPosition = new Vector3(Random.Range(-1.2f, 1.2f), 0, Random.Range(-1.5f, 1.5f));
         newCoin5.transform.rotation = Quaternion.Euler(0, 0, 90);
+        newCoin5.transform.DOLocalRotate(new Vector3(360f, 0f, 90f), 1f, RotateMode.FastBeyond360).SetLoops(-1).SetEase(Ease.Linear);
     }
 
 

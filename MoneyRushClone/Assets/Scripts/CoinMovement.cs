@@ -12,18 +12,21 @@ public class CoinMovement : MonoBehaviour
     {
         swerveInput = GetComponent<SwerveInputSystem>();
         forwardMove = new Vector3(0, 0, 0.1f);
+
     }
 
     void Update()
     {
-        Debug.Log(forwardMove);
-
         transform.position = transform.position + forwardMove;
         Vector3 sideMove = transform.right * swerveSpeed * swerveInput.MoveFactorX * Time.deltaTime;
         transform.position = transform.position + sideMove;
-        Debug.Log(sideMove);
 
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, -2.70f, 2.70f), transform.position.y, transform.position.z);
+
+        //Debug.Log("factor: " + swerveInput.MoveFactorX);
+        Debug.Log("sidemove: " + sideMove);
+        Debug.Log("swervespeed: " + swerveSpeed);
+        Debug.Log("time: " + Time.deltaTime);
     }
 
 

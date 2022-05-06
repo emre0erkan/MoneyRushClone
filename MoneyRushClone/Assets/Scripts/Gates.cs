@@ -1,25 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class Gates : MonoBehaviour
 {
     [SerializeField] Operation operationType;
     [SerializeField] float value;
     private float horizontalMoveSpeed = 0.04f;
-    private bool movingGate;
+    [SerializeField] bool movingGate;
 
-    GameObject coinText;
+    [SerializeField] Renderer _renderer;
 
     private void Start()
     {
-        
-        if (transform.position.x == 0)       //checking if the gate is supposed to move
-            movingGate = true;
+        if (movingGate)
+            transform.DOMoveX(-transform.position.x, 1).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
+        if (operationType == Operation.substract || operationType == Operation.divide)
+        {
+            _renderer.material.color = new Color(1f, 0f, 0f, 0.4f);
+        }
+        else
+        {
+            _renderer.material.color = new Color(0f, 255f / 138f, 255f, 0.10f);
+        }
+
+
     }
     private void Update()
     {
-        GateMovement();
+        Debug.Log(horizontalMoveSpeed);
     }
     public float Calculate(float moneyAmount)
     {
@@ -40,17 +50,6 @@ public class Gates : MonoBehaviour
             return moneyAmount - value;
         }
         return -1;
-    }
-
-    private void GateMovement()
-    {
-        if(movingGate)
-        {
-            transform.position = transform.position + new Vector3(horizontalMoveSpeed, 0, 0);
-            transform.position = new Vector3(Mathf.Clamp(transform.position.x, -2.1f, 2.1f), transform.position.y, transform.position.z);
-            if (transform.position.x == 2.1f || transform.position.x == -2.1f)
-                horizontalMoveSpeed = -horizontalMoveSpeed;      //change direction if reached the edge
-        }
     }
 
     public enum Operation

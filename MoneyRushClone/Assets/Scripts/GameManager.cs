@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class GameManager : MonoBehaviour
@@ -12,6 +13,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject coinMove;
     public GameObject failMenuUI;
+    [SerializeField] Text totalMoneyText;
 
 
     private void Update()
@@ -21,6 +23,7 @@ public class GameManager : MonoBehaviour
             isGameOver = true;
             GameOver();
         }
+        totalMoneyText.text = "Total Money: " + (PlayerPrefs.GetFloat("totalMoney") - 0.5f).ToString();
     }
     public static GameManager Instance
     {
@@ -46,7 +49,6 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         failMenuUI.SetActive(enabled);
-        Time.timeScale = 0f;
         coinMove.GetComponent<CoinMovement>().forwardMove = new Vector3(0, 0, 0);
     }
 }

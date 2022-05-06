@@ -6,6 +6,7 @@ TagManager:
   tags:
   - MainCoin
   - Gate
+  - PlatformEnd
   layers:
   - Default
   - TransparentFX
