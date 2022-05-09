@@ -7,12 +7,11 @@ using DG.Tweening;
 
 public class SpawnCoins : MonoBehaviour
 {
-    private float coinAmountToSpawn;
+    public float coinAmountToSpawn;
 
     [SerializeField] GameObject newCoin50Prefab;
     [SerializeField] GameObject newCoin25Prefab;
     [SerializeField] GameObject newCoin5Prefab;
-    [SerializeField] TextMeshProUGUI moneyText;     // devam
 
     private List<GameObject> coin50List = new List<GameObject>();    //$ ¢
     private List<GameObject> coin25List = new List<GameObject>();
@@ -31,28 +30,9 @@ public class SpawnCoins : MonoBehaviour
         newCoin50.transform.DOLocalRotate(new Vector3(360f, 0f, 90f), 1f, RotateMode.FastBeyond360).SetLoops(-1).SetEase(Ease.Linear);
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "Gate")
-        {
-            Debug.Log("Triggered");
-            float desiredMoney = other.gameObject.GetComponent<Gates>().Calculate(GameManager.Instance.money);
-            coinAmountToSpawn = desiredMoney;
-            GameManager.Instance.money = coinAmountToSpawn;
-            moneyText.text = "$" + GameManager.Instance.money.ToString();
-            DestroyCoins();
-            SpawnCoin();
-            
-            Debug.Log("Total Money: " + GameManager.Instance.money);
-        }
-        else if(other.gameObject.tag == "PlatformEnd")
-        {
-            PlayerPrefs.SetFloat("totalMoney", PlayerPrefs.GetFloat("totalMoney") + GameManager.Instance.money);
-        }
 
-    }
 
-    private void SpawnCoin()
+    public void SpawnCoin()
     {
         for (int j = 0; j < CoinSpawnCalculate50(coinAmountToSpawn); j++)
         {
@@ -68,7 +48,7 @@ public class SpawnCoins : MonoBehaviour
         }
     }
 
-    private void DestroyCoins()
+    public void DestroyCoins()
     {
         for (int i = coin50List.Count - 1; i >= 0; i--)
         {

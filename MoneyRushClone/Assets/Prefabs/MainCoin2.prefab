@@ -114,6 +114,7 @@ GameObject:
   - component: {fileID: 6362879170508494269}
   - component: {fileID: 3194530542740959649}
   - component: {fileID: 8928891566792828511}
+  - component: {fileID: 2603847942701118192}
   m_Layer: 0
   m_Name: MainCoin2
   m_TagString: MainCoin
@@ -161,6 +162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swerveSpeed: 1
+  forwardMove: {x: 0, y: 0, z: 0}
 --- !u!54 &6362879170508494269
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -189,10 +191,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18d76ed72b0de0d4f96f9cb2c2ec7b5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinAmountToSpawn: 0
   newCoin50Prefab: {fileID: 681426370004026609, guid: 7205afc83c8a2164b8093681f7493f25, type: 3}
   newCoin25Prefab: {fileID: 5852153669433866216, guid: 2d688ad254b4054458931e49d30e1207, type: 3}
   newCoin5Prefab: {fileID: 1459122951448500047, guid: 77e24ff32874aab4da8dc86e65a7f182, type: 3}
-  moneyText: {fileID: 2573887618753375970}
 --- !u!136 &8928891566792828511
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -207,6 +209,19 @@ CapsuleCollider:
   m_Height: 1.013
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2603847942701118192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2573887618240118514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98d52f7324758df4c804b0250b2703d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moneyText: {fileID: 2573887618753375970}
 --- !u!1 &2573887618753375968
 GameObject:
   m_ObjectHideFlags: 0

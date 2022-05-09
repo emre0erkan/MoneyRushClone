@@ -18,7 +18,7 @@ public class Gates : MonoBehaviour
     {
         if (movingGate)
             transform.DOMoveX(-transform.position.x, 1).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
-        if (operationType == Operation.substract)
+        if (operationType == Operation.substract || operationType == Operation.divide)
         {
             _renderer.material.color = new Color(1f, 0f, 0f, 0.4f);
         }
@@ -39,7 +39,6 @@ public class Gates : MonoBehaviour
                 gateText.text = "-" + value + "$";
                 break;
         }
-
     }
     private void Update()
     {
@@ -59,6 +58,10 @@ public class Gates : MonoBehaviour
         {
             return moneyAmount - value;
         }
+        else if (operationType == Operation.divide)
+        {
+            return moneyAmount / value;
+        }
         return -1;
     }
 
@@ -67,5 +70,6 @@ public class Gates : MonoBehaviour
         addition,
         multiply,       //selecting gate operation from the editor
         substract,
+        divide,
     }
 }

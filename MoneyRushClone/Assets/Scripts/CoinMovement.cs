@@ -24,9 +24,6 @@ public class CoinMovement : MonoBehaviour
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, -2.70f, 2.70f), transform.position.y, transform.position.z);
 
         //Debug.Log("factor: " + swerveInput.MoveFactorX);
-        Debug.Log("sidemove: " + sideMove);
-        Debug.Log("swervespeed: " + swerveSpeed);
-        Debug.Log("time: " + Time.deltaTime);
     }
 
 
