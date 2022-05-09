@@ -43,10 +43,6 @@ public class Gates : MonoBehaviour
                 break;
         }
     }
-    private void Update()
-    {
-        Debug.Log(horizontalMoveSpeed);
-    }
     public float Calculate(float moneyAmount)
     {
         if (operationType == Operation.addition)

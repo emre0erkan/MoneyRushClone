@@ -8,7 +8,7 @@ public class CoinTrigger : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI moneyText;
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Gate")
         {
@@ -19,8 +19,12 @@ public class CoinTrigger : MonoBehaviour
             moneyText.text = "$" + GameManager.Instance.money.ToString();
             gameObject.GetComponent<SpawnCoins>().DestroyCoins();
             gameObject.GetComponent<SpawnCoins>().SpawnCoin();
-
             Debug.Log("Total Money: " + GameManager.Instance.money);
+            if(GameManager.Instance.money <= 0)
+            {
+                GameManager.Instance.isGameOver = true;
+                GameManager.Instance.GameOver();
+            }
         }
         else if (other.gameObject.tag == "PlatformEnd")
         {

@@ -15,16 +15,6 @@ public class GameManager : MonoBehaviour
     public GameObject failMenuUI;
     [SerializeField] Text totalMoneyText;
 
-
-    private void Update()
-    {
-        if (GameManager.Instance.money <= 0) 
-        { 
-            isGameOver = true;
-            GameOver();
-        }
-        totalMoneyText.text = "Total Money: " + (PlayerPrefs.GetFloat("totalMoney") - 0.5f).ToString();
-    }
     public static GameManager Instance
     {
         get
@@ -40,6 +30,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         money = 0.5f;
+        totalMoneyText.text = "Total Money: " + (PlayerPrefs.GetFloat("totalMoney") - 0.5f).ToString();
     }
     private void OnEnable()
     {
