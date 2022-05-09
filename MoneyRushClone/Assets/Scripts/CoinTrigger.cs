@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class CoinTrigger : MonoBehaviour
 {
@@ -24,7 +25,14 @@ public class CoinTrigger : MonoBehaviour
         else if (other.gameObject.tag == "PlatformEnd")
         {
             PlayerPrefs.SetFloat("totalMoney", PlayerPrefs.GetFloat("totalMoney") + GameManager.Instance.money);
+            StartCoroutine(SceneDelay());
         }
 
+    }
+
+    IEnumerator SceneDelay()
+    {
+        yield return new WaitForSeconds(0.5f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

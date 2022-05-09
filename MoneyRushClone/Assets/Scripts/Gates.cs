@@ -38,6 +38,9 @@ public class Gates : MonoBehaviour
             case Operation.substract:
                 gateText.text = "-" + value + "$";
                 break;
+            case Operation.divide:
+                gateText.text = "/" + value + "$";
+                break;
         }
     }
     private void Update()
