@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class Gates : MonoBehaviour
 {
@@ -11,12 +12,13 @@ public class Gates : MonoBehaviour
     [SerializeField] bool movingGate;
 
     [SerializeField] Renderer _renderer;
+    [SerializeField] Text gateText;
 
     private void Start()
     {
         if (movingGate)
             transform.DOMoveX(-transform.position.x, 1).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
-        if (operationType == Operation.substract || operationType == Operation.divide)
+        if (operationType == Operation.substract)
         {
             _renderer.material.color = new Color(1f, 0f, 0f, 0.4f);
         }
@@ -25,6 +27,18 @@ public class Gates : MonoBehaviour
             _renderer.material.color = new Color(0f, 255f / 138f, 255f, 0.10f);
         }
 
+        switch (operationType)
+        {
+            case Operation.addition:
+                gateText.text = "+" + value + "$";
+                break;
+            case Operation.multiply:
+                gateText.text = "*" + value + "$";
+                break;
+            case Operation.substract:
+                gateText.text = "-" + value + "$";
+                break;
+        }
 
     }
     private void Update()
@@ -41,10 +55,6 @@ public class Gates : MonoBehaviour
         {
             return moneyAmount * value;
         }
-        else if (operationType == Operation.divide)
-        {
-            return moneyAmount / value;
-        }
         else if (operationType == Operation.substract)
         {
             return moneyAmount - value;
@@ -56,7 +66,6 @@ public class Gates : MonoBehaviour
     {
         addition,
         multiply,       //selecting gate operation from the editor
-        divide,
         substract,
     }
 }
