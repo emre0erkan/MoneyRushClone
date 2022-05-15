@@ -11,7 +11,7 @@ public class CoinMovement : MonoBehaviour
     private void Start()
     {
         swerveInput = GetComponent<SwerveInputSystem>();
-        forwardMove = new Vector3(0, 0, 0.1f);
+        forwardMove = new Vector3(0f, 0f, 0f);
 
     }
 

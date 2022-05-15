@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject coinMove;
     public GameObject failMenuUI;
+    public GameObject startButton;
     [SerializeField] Text totalMoneyText;
 
     public static GameManager Instance
@@ -35,6 +36,11 @@ public class GameManager : MonoBehaviour
     private void OnEnable()
     {
         instance = this;
+    }
+
+    public void StartGame()
+    {
+        coinMove.GetComponent<CoinMovement>().forwardMove = new Vector3(0f, 0f, 0.1f);
     }
 
     public void GameOver()
