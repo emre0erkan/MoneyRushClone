@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
@@ -20,7 +21,7 @@ public class GameManager : MonoBehaviour
     {
         get
         {
-            if(instance == null)
+            if (instance == null)
             {
                 instance = new GameObject("GameManager").AddComponent<GameManager>();
             }
@@ -45,7 +46,15 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        startButton.SetActive(false);
         failMenuUI.SetActive(enabled);
         coinMove.GetComponent<CoinMovement>().forwardMove = new Vector3(0, 0, 0);
+    }
+
+    public void Retry()
+    {
+        isGameOver = false;
+        startButton.SetActive(true);
+        SceneManager.LoadScene("Game");
     }
 }
