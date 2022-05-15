@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class CoinTrigger : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI moneyText;
+    public float newMoney;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -15,7 +16,7 @@ public class CoinTrigger : MonoBehaviour
             Debug.Log("Triggered");
             float desiredMoney = other.gameObject.GetComponent<Gates>().Calculate(GameManager.Instance.money);       //baþlýyorum
             gameObject.GetComponent<SpawnCoins>().coinAmountToSpawn = desiredMoney;
-            if(desiredMoney != GameManager.Instance.money)
+            if (desiredMoney != GameManager.Instance.money)
             {
                 gameObject.GetComponent<SpawnCoins>().DestroyCoins();
                 gameObject.GetComponent<SpawnCoins>().SpawnCoin();
@@ -23,7 +24,8 @@ public class CoinTrigger : MonoBehaviour
             GameManager.Instance.money = gameObject.GetComponent<SpawnCoins>().coinAmountToSpawn;
             moneyText.text = "$" + GameManager.Instance.money.ToString();
             Debug.Log("Total Money: " + GameManager.Instance.money);
-            if(GameManager.Instance.money <= 0)
+            Debug.Log("playerprefs" + PlayerPrefs.GetFloat("totalMoney"));
+            if (GameManager.Instance.money <= 0)
             {
                 GameManager.Instance.isGameOver = true;
                 GameManager.Instance.GameOver();
@@ -31,10 +33,10 @@ public class CoinTrigger : MonoBehaviour
         }
         else if (other.gameObject.tag == "PlatformEnd")
         {
-            PlayerPrefs.SetFloat("totalMoney", PlayerPrefs.GetFloat("totalMoney") + GameManager.Instance.money);
+            newMoney = PlayerPrefs.GetFloat("totalMoney") + GameManager.Instance.money;
+            PlayerPrefs.SetFloat("totalMoney", newMoney);
             StartCoroutine(SceneDelay());
         }
-
     }
 
     IEnumerator SceneDelay()

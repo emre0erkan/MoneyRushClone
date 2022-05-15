@@ -33,7 +33,7 @@ public class Gates : MonoBehaviour
                 gateText.text = "+" + value + "$";
                 break;
             case Operation.multiply:
-                gateText.text = "*" + value + "$";
+                gateText.text = "X" + value + "$";
                 break;
             case Operation.substract:
                 gateText.text = "-" + value + "$";

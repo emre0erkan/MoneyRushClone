@@ -32,7 +32,11 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         money = 0.5f;
-        totalMoneyText.text = "Total Money: " + (PlayerPrefs.GetFloat("totalMoney") - 0.5f).ToString();
+        if (SceneManager.GetActiveScene().name == "Game")
+            totalMoneyText.text = "Total Money: " + (PlayerPrefs.GetFloat("totalMoney") - 0.5f).ToString();
+        else
+            totalMoneyText.text = "Total Money: " + (PlayerPrefs.GetFloat("totalMoney")).ToString();
+
     }
     private void OnEnable()
     {

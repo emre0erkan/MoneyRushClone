@@ -415,9 +415,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '/2
-
-'
+  m_Text: 
 --- !u!1 &2401953125744252664
 GameObject:
   m_ObjectHideFlags: 0
