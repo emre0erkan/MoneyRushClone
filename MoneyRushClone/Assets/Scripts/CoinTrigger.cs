@@ -13,12 +13,15 @@ public class CoinTrigger : MonoBehaviour
         if (other.gameObject.tag == "Gate")
         {
             Debug.Log("Triggered");
-            float desiredMoney = other.gameObject.GetComponent<Gates>().Calculate(GameManager.Instance.money);
+            float desiredMoney = other.gameObject.GetComponent<Gates>().Calculate(GameManager.Instance.money);       //baþlýyorum
             gameObject.GetComponent<SpawnCoins>().coinAmountToSpawn = desiredMoney;
+            if(desiredMoney != GameManager.Instance.money)
+            {
+                gameObject.GetComponent<SpawnCoins>().DestroyCoins();
+                gameObject.GetComponent<SpawnCoins>().SpawnCoin();
+            }
             GameManager.Instance.money = gameObject.GetComponent<SpawnCoins>().coinAmountToSpawn;
             moneyText.text = "$" + GameManager.Instance.money.ToString();
-            gameObject.GetComponent<SpawnCoins>().DestroyCoins();
-            gameObject.GetComponent<SpawnCoins>().SpawnCoin();
             Debug.Log("Total Money: " + GameManager.Instance.money);
             if(GameManager.Instance.money <= 0)
             {

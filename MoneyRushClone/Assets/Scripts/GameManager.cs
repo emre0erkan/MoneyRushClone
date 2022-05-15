@@ -55,6 +55,6 @@ public class GameManager : MonoBehaviour
     {
         isGameOver = false;
         startButton.SetActive(true);
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
